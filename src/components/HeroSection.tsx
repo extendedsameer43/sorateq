@@ -66,11 +66,14 @@ export default function HeroSection() {
       {/* Single screen content - no scrolling */}
       <div className="relative h-screen flex items-center justify-center">
           
+          {/* Subtle overlay for WebGL background readability */}
+          <div className="absolute inset-0 bg-black/20 z-[0]" />
+          
           {/* Background elements - non-sticky */}
-          <div className="absolute inset-0 z-[0]">
+          <div className="absolute inset-0 z-[1]">
           
           {/* Enhanced grain/noise overlay */}
-          <div className="absolute inset-0 z-[0] pointer-events-none">
+          <div className="absolute inset-0 z-[2] pointer-events-none">
             <div className="noise-texture w-full h-full opacity-40 mix-blend-multiply"></div>
             <div 
               className="absolute inset-0 w-full h-full opacity-25"
@@ -87,7 +90,7 @@ export default function HeroSection() {
           
           {/* Abstract geometric shapes */}
           {/* Large H-shaped overlay on the left */}
-          <div className="absolute left-[8%] sm:left-[6%] top-1/2 -translate-y-1/2 z-[1]">
+          <div className="absolute left-[8%] sm:left-[6%] top-1/2 -translate-y-1/2 z-[3]">
             <div className="relative">
               {/* Vertical rectangle */}
               <div className="w-24 h-80 bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
@@ -97,14 +100,14 @@ export default function HeroSection() {
           </div>
           
           {/* Tall rectangle on the right */}
-          <div className="absolute right-[12%] sm:right-[6%] top-1/2 -translate-y-1/2 z-[1]">
+          <div className="absolute right-[12%] sm:right-[6%] top-1/2 -translate-y-1/2 z-[3]">
             <div className="w-20 h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
           </div>
           
           {/* Main orange circle - perfectly centered behind text */}
           <div 
             ref={orbRef} 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[350px] md:h-[350px] sm:w-[230px] sm:h-[230px] rounded-full z-[2]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[350px] md:h-[350px] sm:w-[230px] sm:h-[230px] rounded-full z-[4]"
             style={{
               background: 'radial-gradient(circle, #ff4500 0%, #ff5722 25%, #e64100 50%, #cc3300 75%, rgba(180, 40, 0, 0.8) 90%, transparent 100%)',
               opacity: 0.98
@@ -112,12 +115,12 @@ export default function HeroSection() {
           />
           
           {/* Orb-specific noise overlay */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[350px] md:h-[350px] sm:w-[230px] sm:h-[230px] rounded-full pointer-events-none z-[3]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[350px] md:h-[350px] sm:w-[230px] sm:h-[230px] rounded-full pointer-events-none z-[5]">
             <div className="noise-texture w-full h-full opacity-20 mix-blend-overlay rounded-full"></div>
           </div>
           
           {/* Dot patterns overlay - subtle groups scattered around orb */}
-          <div ref={dotsRef} className="absolute inset-0 z-[3]">
+          <div ref={dotsRef} className="absolute inset-0 z-[5]">
             {/* Upper left small cluster */}
             <div className="absolute top-[20%] left-[20%]">
               <div className="grid grid-cols-3 gap-2">

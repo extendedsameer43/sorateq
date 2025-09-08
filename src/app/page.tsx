@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navigation from '@/components/Navigation'
 import HeroSection from '@/components/HeroSection'
 import SecondSection from '@/components/SecondSection'
+import WebGLBackground from '@/components/WebGLBackground'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -41,6 +42,9 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="relative">
+      {/* Global WebGL Background */}
+      <WebGLBackground />
+      
       <Navigation />
       
       {/* Main Hero Section - Full page */}

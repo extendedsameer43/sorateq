@@ -23,7 +23,7 @@ export default function SecondSection() {
       if (!isInSection) return
       
       const direction = e.deltaY > 0 ? 1 : -1
-      const newStep = Math.max(-1, Math.min(currentStep + direction, textLines.length - 1))
+      const newStep = Math.max(-1, Math.min(currentStep + direction, 5)) // Allow up to step 5 for horizontal lines closer position
       
       // Only prevent default scroll if we can still navigate within the text sequence
       // or if we're scrolling forward
@@ -49,34 +49,24 @@ export default function SecondSection() {
     <section 
       ref={containerRef}
       className="relative h-screen w-full flex items-center justify-center overflow-hidden"
-      style={{
-        background: `linear-gradient(135deg, 
-          rgba(0, 0, 0, 0.95) 0%, 
-          rgba(139, 69, 19, 0.4) 25%, 
-          rgba(160, 82, 45, 0.3) 50%, 
-          rgba(101, 67, 33, 0.4) 75%, 
-          rgba(0, 0, 0, 0.95) 100%)`
-      }}
     >
-      {/* Enhanced dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+      {/* Subtle overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/20" />
       
       {/* Container for text - Mobile responsive */}
       <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 md:px-8 max-w-6xl mx-auto">
-        <div className="text-center space-y-3 sm:space-y-4">
+        <div className="text-center space-y-6 sm:space-y-8 md:space-y-10">
           {/* First line - appears on first scroll, disappears on third scroll */}
           {currentStep >= 0 && currentStep < 2 && (
             <h2 
               key="line1"
-              className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light leading-tight animate-fade-in"
+              className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light leading-relaxed tracking-wide animate-fade-in"
             >
               {textLines[0].split(' ').map((word, index) => (
                 <span 
                   key={index}
-                  className="inline-block animate-slide-in"
+                  className={`inline-block animate-slide-in ${index < textLines[0].split(' ').length - 1 ? 'mr-2 sm:mr-3 md:mr-4' : ''}`}
                   style={{ 
-                    marginRight: index < textLines[0].split(' ').length - 1 ? '0.3rem sm:0.4rem md:0.5rem' : '0',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
@@ -90,14 +80,13 @@ export default function SecondSection() {
           {currentStep >= 1 && currentStep < 2 && (
             <h2 
               key="line2"
-              className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light leading-tight animate-fade-in"
+              className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light leading-relaxed tracking-wide animate-fade-in"
             >
               {textLines[1].split(' ').map((word, index) => (
                 <span 
                   key={index}
-                  className="inline-block animate-slide-in"
+                  className={`inline-block animate-slide-in ${index < textLines[1].split(' ').length - 1 ? 'mr-2 sm:mr-3 md:mr-4' : ''}`}
                   style={{ 
-                    marginRight: index < textLines[1].split(' ').length - 1 ? '0.25rem' : '0',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
@@ -109,16 +98,82 @@ export default function SecondSection() {
           
           {/* Third line - appears alone on third scroll (first two lines disappear) */}
           {currentStep >= 2 && (
-            <h2 
-              key="line3"
-              className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light leading-tight animate-fade-in"
-            >
+            <div className="relative">
+              {/* Animated vertical lines */}
+              <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[5]">
+                {/* Left vertical line */}
+                <div 
+                  className={`absolute top-0 w-[1.5px] sm:w-[2px] bg-gray-500 transition-all duration-1000 ease-out ${
+                    currentStep === 2 
+                      ? 'left-[20%] sm:left-[15%] md:left-[12%] lg:left-[10%] xl:left-[8%] animate-slide-in-left' 
+                      : 'left-[35%]'
+                  }`}
+                  style={{
+                    height: '100vh',
+                    animationDelay: currentStep === 2 ? '0.5s' : '0s',
+                    animationDuration: currentStep === 2 ? '1s' : '0s',
+                    animationFillMode: 'both'
+                  }}
+                />
+                
+                {/* Right vertical line */}
+                <div 
+                  className={`absolute top-0 w-[1.5px] sm:w-[2px] bg-gray-500 transition-all duration-1000 ease-out ${
+                    currentStep === 2 
+                      ? 'right-[20%] sm:right-[15%] md:right-[12%] lg:right-[10%] xl:right-[8%] animate-slide-in-right' 
+                      : 'right-[35%]'
+                  }`}
+                  style={{
+                    height: '100vh',
+                    animationDelay: currentStep === 2 ? '0.5s' : '0s',
+                    animationDuration: currentStep === 2 ? '1s' : '0s',
+                    animationFillMode: 'both'
+                  }}
+                />
+              </div>
+              
+              {/* Horizontal lines - appear on step 4 */}
+              {currentStep >= 4 && (
+                <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[6]">
+                  {/* Top horizontal line */}
+                  <div 
+                    className={`absolute left-0 right-0 h-[1.5px] sm:h-[2px] bg-gray-500 transition-all duration-1000 ease-out ${
+                      currentStep === 4 
+                        ? 'top-[20%] sm:top-[15%] md:top-[12%] lg:top-[10%] xl:top-[8%] animate-slide-in-top' 
+                        : 'top-[25%]'
+                    }`}
+                    style={{
+                      animationDelay: currentStep === 4 ? '0.3s' : '0s',
+                      animationDuration: currentStep === 4 ? '1s' : '0s',
+                      animationFillMode: 'both'
+                    }}
+                  />
+                  
+                  {/* Bottom horizontal line */}
+                  <div 
+                    className={`absolute left-0 right-0 h-[1.5px] sm:h-[2px] bg-gray-500 transition-all duration-1000 ease-out ${
+                      currentStep === 4 
+                        ? 'bottom-[20%] sm:bottom-[15%] md:bottom-[12%] lg:bottom-[10%] xl:bottom-[8%] animate-slide-in-bottom' 
+                        : 'bottom-[25%]'
+                    }`}
+                    style={{
+                      animationDelay: currentStep === 4 ? '0.3s' : '0s',
+                      animationDuration: currentStep === 4 ? '1s' : '0s',
+                      animationFillMode: 'both'
+                    }}
+                  />
+                </div>
+              )}
+              
+              <h2 
+                key="line3"
+                className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light leading-relaxed tracking-wide animate-fade-in"
+              >
               {textLines[2].split(' ').map((word, index) => (
                 <span 
                   key={index}
-                  className="inline-block animate-slide-in"
+                  className={`inline-block animate-slide-in ${index < textLines[2].split(' ').length - 1 ? 'mr-2 sm:mr-3 md:mr-4' : ''}`}
                   style={{ 
-                    marginRight: index < textLines[2].split(' ').length - 1 ? '0.25rem' : '0',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
@@ -126,11 +181,12 @@ export default function SecondSection() {
                 </span>
               ))}
             </h2>
+            </div>
           )}
         </div>
         
         {/* Scroll hint */}
-        {currentStep < textLines.length - 1 && (
+        {currentStep < 5 && (
           <div className="absolute bottom-8 right-8 opacity-60">
             <p className="text-white text-sm font-light mb-2">Scroll to continue</p>
             <div className="animate-bounce">

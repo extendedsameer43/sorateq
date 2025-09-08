@@ -16,7 +16,7 @@ html {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #000;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 25%, #330000 50%, #1a0000 75%, #0a0a0a 100%);
   color: white;
   overflow-x: hidden;
   position: relative;

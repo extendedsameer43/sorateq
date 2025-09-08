@@ -61,7 +61,7 @@ export default function HeroSection() {
   return (
     <section 
       ref={heroRef} 
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen w-full"
     >
       {/* Single screen content - no scrolling */}
       <div className="relative h-screen flex items-center justify-center">
@@ -222,30 +222,6 @@ export default function HeroSection() {
                   </svg>
                 </button>
               </div>
-            </div>
-          </div>
-          
-          {/* UI Buttons container */}
-          <div className="absolute inset-0 z-[20] pointer-events-none">
-            {/* Replay Live Runs button - bottom right */}
-            <div className="absolute bottom-8 right-8 replay-button pointer-events-auto">
-              <button className="flex items-center space-x-3 bg-black px-4 py-3 rounded-lg text-white hover:bg-gray-900 transition-colors">
-                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                  <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <span className="text-sm font-medium">Replay Live Runs</span>
-              </button>
-            </div>
-            
-            {/* Bottom left floating button */}
-            <div className="absolute bottom-8 left-8 pointer-events-auto">
-              <button className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors shadow-lg">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </button>
             </div>
           </div>
       </div>

@@ -175,3 +175,64 @@ body {
   animation: slide-in-bottom 1s ease-out forwards;
   opacity: 0;
 }
+
+/* Reverse slide-out animations for going back */
+@keyframes slide-out-left {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-top {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-bottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+}
+
+.animate-slide-out-left {
+  animation: slide-out-left 0.8s ease-in forwards;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.8s ease-in forwards;
+}
+
+.animate-slide-out-top {
+  animation: slide-out-top 1s ease-in forwards;
+}
+
+.animate-slide-out-bottom {
+  animation: slide-out-bottom 1s ease-in forwards;
+}

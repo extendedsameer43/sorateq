@@ -61,19 +61,16 @@ export default function HeroSection() {
   return (
     <section 
       ref={heroRef} 
-      className="relative h-screen w-full"
+      className="relative h-[85vh] w-full"
     >
       {/* Single screen content - no scrolling */}
-      <div className="relative h-screen flex items-center justify-center">
-          
-          {/* Subtle overlay for WebGL background readability */}
-          <div className="absolute inset-0 bg-black/20 z-[0]" />
+      <div className="relative h-[85vh] flex items-center justify-center">
           
           {/* Background elements - non-sticky */}
-          <div className="absolute inset-0 z-[1]">
+          <div className="absolute inset-0 z-[0]">
           
           {/* Enhanced grain/noise overlay */}
-          <div className="absolute inset-0 z-[2] pointer-events-none">
+          <div className="absolute inset-0 z-[0] pointer-events-none">
             <div className="noise-texture w-full h-full opacity-40 mix-blend-multiply"></div>
             <div 
               className="absolute inset-0 w-full h-full opacity-25"
@@ -89,58 +86,58 @@ export default function HeroSection() {
           </div>
           
           {/* Abstract geometric shapes */}
-          {/* Large H-shaped overlay on the left */}
-          <div className="absolute left-[8%] sm:left-[6%] top-1/2 -translate-y-1/2 z-[3]">
+          {/* Large H-shaped overlay on the left - hidden on mobile */}
+          <div className="hidden sm:block absolute left-[8%] sm:left-[6%] top-1/2 -translate-y-1/2 z-[1]">
             <div className="relative">
               {/* Vertical rectangle */}
-              <div className="w-24 h-80 bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
+              <div className="w-16 sm:w-20 md:w-24 h-60 sm:h-72 md:h-80 bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
               {/* Horizontal cross */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-32 h-16 bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
+              <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-20 sm:w-24 md:w-32 h-12 sm:h-14 md:h-16 bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
             </div>
           </div>
           
-          {/* Tall rectangle on the right */}
-          <div className="absolute right-[12%] sm:right-[6%] top-1/2 -translate-y-1/2 z-[3]">
-            <div className="w-20 h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
+          {/* Tall rectangle on the right - hidden on mobile */}
+          <div className="hidden sm:block absolute right-[12%] sm:right-[6%] top-1/2 -translate-y-1/2 z-[1]">
+            <div className="w-12 sm:w-16 md:w-20 h-72 sm:h-80 md:h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg" style={{ opacity: 0.14 }}></div>
           </div>
           
-          {/* Main orange circle - perfectly centered behind text */}
+          {/* Main orange circle - responsive sizing */}
           <div 
             ref={orbRef} 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[350px] md:h-[350px] sm:w-[230px] sm:h-[230px] rounded-full z-[4]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] sm:w-[230px] sm:h-[230px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px] rounded-full z-[2]"
             style={{
               background: 'radial-gradient(circle, #ff4500 0%, #ff5722 25%, #e64100 50%, #cc3300 75%, rgba(180, 40, 0, 0.8) 90%, transparent 100%)',
               opacity: 0.98
             }}
           />
           
-          {/* Orb-specific noise overlay */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[350px] md:h-[350px] sm:w-[230px] sm:h-[230px] rounded-full pointer-events-none z-[5]">
+          {/* Orb-specific noise overlay - responsive sizing */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] sm:w-[230px] sm:h-[230px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px] rounded-full pointer-events-none z-[3]">
             <div className="noise-texture w-full h-full opacity-20 mix-blend-overlay rounded-full"></div>
           </div>
           
-          {/* Dot patterns overlay - subtle groups scattered around orb */}
-          <div ref={dotsRef} className="absolute inset-0 z-[5]">
-            {/* Upper left small cluster */}
-            <div className="absolute top-[20%] left-[20%]">
-              <div className="grid grid-cols-3 gap-2">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="dot w-1.5 h-1.5 bg-white rounded-full opacity-25"></div>
+          {/* Dot patterns overlay - responsive clusters */}
+          <div ref={dotsRef} className="absolute inset-0 z-[3]">
+            {/* Upper left small cluster - responsive positioning */}
+            <div className="absolute top-[25%] sm:top-[20%] left-[15%] sm:left-[20%]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="dot w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full opacity-25"></div>
                 ))}
               </div>
             </div>
             
-            {/* Upper right small cluster */}
-            <div className="absolute top-[18%] right-[18%]">
-              <div className="grid grid-cols-2 gap-2">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="dot w-1.5 h-1.5 bg-white rounded-full opacity-25"></div>
+            {/* Upper right small cluster - responsive positioning */}
+            <div className="absolute top-[22%] sm:top-[18%] right-[15%] sm:right-[18%]">
+              <div className="grid grid-cols-2 gap-1 sm:gap-2">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="dot w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full opacity-25"></div>
                 ))}
               </div>
             </div>
             
-            {/* Mid left cluster */}
-            <div className="absolute top-[40%] left-[12%]">
+            {/* Mid left cluster - hidden on small mobile */}
+            <div className="hidden sm:block absolute top-[40%] left-[12%]">
               <div className="grid grid-cols-2 gap-1.5">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="dot w-1 h-1 bg-white rounded-full opacity-20"></div>
@@ -148,8 +145,8 @@ export default function HeroSection() {
               </div>
             </div>
             
-            {/* Mid right cluster */}
-            <div className="absolute top-[35%] right-[8%]">
+            {/* Mid right cluster - hidden on small mobile */}
+            <div className="hidden sm:block absolute top-[35%] right-[8%]">
               <div className="grid grid-cols-3 gap-1.5">
                 {Array.from({ length: 7 }).map((_, i) => (
                   <div key={i} className="dot w-1 h-1 bg-white rounded-full opacity-20"></div>
@@ -157,26 +154,26 @@ export default function HeroSection() {
               </div>
             </div>
             
-            {/* Lower right cluster */}
-            <div className="absolute bottom-[25%] right-[20%]">
-              <div className="grid grid-cols-2 gap-2">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="dot w-1.5 h-1.5 bg-white rounded-full opacity-25"></div>
+            {/* Lower right cluster - responsive positioning */}
+            <div className="absolute bottom-[35%] sm:bottom-[25%] right-[18%] sm:right-[20%]">
+              <div className="grid grid-cols-2 gap-1 sm:gap-2">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="dot w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full opacity-25"></div>
                 ))}
               </div>
             </div>
             
-            {/* Lower left cluster */}
-            <div className="absolute bottom-[30%] left-[15%]">
-              <div className="grid grid-cols-3 gap-1.5">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="dot w-1.5 h-1.5 bg-white rounded-full opacity-25"></div>
+            {/* Lower left cluster - responsive positioning */}
+            <div className="absolute bottom-[38%] sm:bottom-[30%] left-[12%] sm:left-[15%]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-1.5">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="dot w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full opacity-25"></div>
                 ))}
               </div>
             </div>
             
-            {/* Additional scattered small clusters */}
-            <div className="absolute top-[60%] left-[25%]">
+            {/* Additional scattered small clusters - hidden on mobile */}
+            <div className="hidden md:block absolute top-[60%] left-[25%]">
               <div className="grid grid-cols-2 gap-2">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="dot w-1 h-1 bg-white rounded-full opacity-15"></div>
@@ -184,7 +181,7 @@ export default function HeroSection() {
               </div>
             </div>
             
-            <div className="absolute top-[15%] left-[45%]">
+            <div className="hidden md:block absolute top-[15%] left-[45%]">
               <div className="grid grid-cols-2 gap-1.5">
                 {Array.from({ length: 7 }).map((_, i) => (
                   <div key={i} className="dot w-1 h-1 bg-white rounded-full opacity-15"></div>
@@ -194,33 +191,34 @@ export default function HeroSection() {
           </div>
           </div>
           
-          {/* First screen UI elements - only visible on first screen */}
+          {/* First screen UI elements - responsive text and input */}
           <div className="relative z-[20]">
-            {/* Main headline text - perfectly centered over orb */}
-            <div className="absolute inset-0 flex items-center justify-center text-center w-full px-6 pointer-events-auto">
-              <h1 ref={textRef} className="hero-text text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-white leading-none whitespace-nowrap">
-                SORATEQ is a Service based company
+            {/* Main headline text - responsive typography */}
+            <div className="absolute inset-0 flex items-center justify-center text-center w-full px-4 sm:px-6 pointer-events-auto">
+              <h1 ref={textRef} className="hero-text text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-white leading-tight sm:leading-none">
+                <span className="block sm:inline">SORATEQ is a Service</span>
+                <span className="block sm:inline sm:ml-2">based company</span>
               </h1>
             </div>
           </div>
             
-          {/* Input container - positioned at bottom of hero section, outside text container */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full pointer-events-auto z-[25]">
-            <div className="w-full max-w-md sm:max-w-xs md:max-w-lg mx-auto px-6 input-container">
+          {/* Input container - mobile-optimized positioning and styling */}
+          <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 w-full pointer-events-auto z-[25]">
+            <div className="w-full max-w-[calc(100%-2rem)] sm:max-w-xs md:max-w-lg mx-auto px-4 sm:px-6 input-container">
               <div className="relative">
                 <input
                   type="text"
                   placeholder="What do you want to automate?"
-                  className="w-full px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/40 text-base border-none"
+                  className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/40 border-none transition-all duration-200"
                   style={{
-                    backgroundColor: 'rgba(0, 0, 0, 0.55)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
                     borderRadius: '12px',
-                    backdropFilter: 'blur(10px)'
+                    backdropFilter: 'blur(12px)'
                   }}
                 />
-                <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black w-8 h-8 flex items-center justify-center rounded">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/80 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                   </svg>
                 </button>

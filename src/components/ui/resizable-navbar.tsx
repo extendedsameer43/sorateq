@@ -57,13 +57,18 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     offset: ["start start", "end start"],
   });
   const [visible, setVisible] = useState<boolean>(false);
+  const [prevScrollY, setPrevScrollY] = useState<number>(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
+    const isScrollingDown = latest > prevScrollY;
+    
+    if (isScrollingDown && latest > 150) {
       setVisible(true);
-    } else {
+    } else if (!isScrollingDown && latest < 50) {
       setVisible(false);
     }
+    
+    setPrevScrollY(latest);
   });
 
   return (
@@ -99,8 +104,9 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 100,
+        damping: 30,
+        mass: 1,
       }}
       style={{
         minWidth: visible ? "800px" : "100%",
@@ -164,8 +170,9 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 100,
+        damping: 30,
+        mass: 1,
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden border-b border-gray-200",

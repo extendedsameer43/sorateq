@@ -1,5 +1,6 @@
 import { NavbarDemo } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { IsThisYou } from "@/components/is-this-you";
 import { Features } from "@/components/features";
 
 export default function Home() {
@@ -10,6 +11,9 @@ export default function Home() {
       
       {/* Hero Section */}
       <Hero />
+      
+      {/* Is This You Section */}
+      <IsThisYou />
       
       {/* Features Section */}
       <Features />

@@ -1,5 +1,6 @@
 import { NavbarDemo } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { Features } from "@/components/features";
 
 export default function Home() {
   return (
@@ -9,6 +10,9 @@ export default function Home() {
       
       {/* Hero Section */}
       <Hero />
+      
+      {/* Features Section */}
+      <Features />
     </div>
   );
 }
